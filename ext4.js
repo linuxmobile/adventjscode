@@ -1056,13 +1056,21 @@ let n = 0;
 // 	n += (+A <= +B && +EB <= +EA) || (+B <= +A && +EA <= +EB) ? 1 : 0;
 // }
 
+// Recorremos cada línea del input
 for (let i = 0; i < data.length; i++) {
-	const items = data[i].split`,`;
+  // Separamos cada línea en dos partes: el intervalo A y el intervalo B
+  const items = data[i].split(",");
 
-	const [A, EA] = items[0].split("-");
-	const [B, EB] = items[1].split("-");
+  // Separamos cada intervalo en su inicio y su fin
+  const [A, EA] = items[0].split("-");
+  const [B, EB] = items[1].split("-");
 
-	n += !(+A > +EB || +B > +EA) ? 1 : 0;
+  // Comprobamos si los intervalos se solapan
+  // Si se solapan, aumentamos el contador n
+  if (!(+A > +EB || +B > +EA)) {
+    n++;
+  }
 }
 
+// Mostramos el resultado por consola
 console.log(n);
